@@ -109,6 +109,11 @@
             font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
             background-color: #FAFAFA;
         }
+        
+        /* 드래그 상태일 때 텍스트 선택 방지 */
+        .dragging {
+            user-select: none;
+        }
     </style>
 </head>
 <body class="min-h-screen text-[#111] selection:bg-black selection:text-white">
@@ -173,8 +178,8 @@
                 <button onclick="scrollSlider(400)" class="p-3 rounded-full border border-gray-300 hover:bg-gray-100 transition"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
             </div>
         </div>
-        <!-- cursor-grab 클래스를 추가하여 드래그 가능함을 시각적으로 표시 -->
-        <div id="competencies-slider" class="flex overflow-x-auto hide-scrollbar px-6 md:px-12 pb-12 gap-6 md:gap-8 select-none cursor-grab snap-x snap-mandatory"></div>
+        <!-- 마우스 드래그를 위해 snap 클래스는 JS에서 유동적으로 조절합니다. -->
+        <div id="competencies-slider" class="flex overflow-x-auto hide-scrollbar px-6 md:px-12 pb-12 gap-6 md:gap-8 cursor-grab select-none snap-x snap-mandatory"></div>
     </section>
 
     <!-- Explore Skills Section -->
@@ -305,7 +310,7 @@
                 </button>
             `).join('');
 
-            // Render Hero Info
+            // Render Hero Info (Contribution Bar Added)
             document.getElementById('hero-content-container').innerHTML = `
                 <div class="w-full md:w-[45%] h-[300px] md:h-auto relative overflow-hidden flex items-center justify-center animate-hero bg-gray-100">
                     <div class="absolute inset-0 w-full h-full bg-cover bg-top transform hover:scale-105 transition-transform duration-700" style="background-image: url('${proj.imageUrl}');"></div>
@@ -316,6 +321,7 @@
                     <h2 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-6 break-keep leading-tight text-gray-900">${proj.title}</h2>
                     <p class="text-base md:text-xl text-gray-500 mb-10 break-keep font-medium leading-relaxed">${proj.desc}</p>
                     
+                    <!-- Contribution Area -->
                     <div class="bg-[#F8F9FA] rounded-2xl p-5 md:p-6 flex gap-8 mb-12 w-max border border-gray-100">
                         ${proj.planning > 0 ? `
                         <div>
@@ -371,6 +377,7 @@
                     <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 break-keep">${proj.title}</h2>
                     <p class="text-xl md:text-2xl text-gray-500 font-light max-w-2xl mx-auto mb-10 break-keep">${proj.desc}</p>
                     
+                    <!-- Modal Contribution Info -->
                     <div class="flex gap-10 justify-center mb-16">
                         ${proj.planning > 0 ? `
                         <div>
@@ -408,48 +415,65 @@
             let isDown = false;
             let startX;
             let scrollLeft;
+            let velocity = 0;
+            let lastX = 0;
+            let animationId;
 
             el.addEventListener('mousedown', (e) => {
                 isDown = true;
                 el.classList.add('cursor-grabbing');
                 el.classList.remove('cursor-grab');
-                // 드래그 중에는 Snap 기능 잠시 제거
-                el.classList.remove('snap-x', 'snap-mandatory');
+                document.body.classList.add('dragging');
+                
+                // 드래그 중에는 Snap 기능 잠시 끄기 (CSS 스타일 직접 제어)
+                el.style.scrollSnapType = 'none';
+                
                 startX = e.pageX - el.offsetLeft;
                 scrollLeft = el.scrollLeft;
-            });
-
-            el.addEventListener('mouseleave', () => {
-                if (!isDown) return;
-                isDown = false;
-                el.classList.remove('cursor-grabbing');
-                el.classList.add('cursor-grab');
-                el.classList.add('snap-x', 'snap-mandatory');
-            });
-
-            el.addEventListener('mouseup', () => {
-                isDown = false;
-                el.classList.remove('cursor-grabbing');
-                el.classList.add('cursor-grab');
-                // 드래그 종료 후 Snap 기능 복구
-                el.classList.add('snap-x', 'snap-mandatory');
+                cancelAnimationFrame(animationId);
             });
 
             el.addEventListener('mousemove', (e) => {
                 if (!isDown) return;
                 e.preventDefault();
                 const x = e.pageX - el.offsetLeft;
-                const walk = (x - startX) * 2; // 스크롤 속도 배율
+                const walk = (x - startX) * 1.5; // 드래그 강도 조절
                 el.scrollLeft = scrollLeft - walk;
+                
+                // 관성을 위한 속도 계산
+                velocity = x - lastX;
+                lastX = x;
             });
 
-            // 터치 지원 (모바일용)
-            el.addEventListener('touchstart', (e) => {
-                el.classList.remove('snap-x', 'snap-mandatory');
-            }, { passive: true });
+            const stopDragging = () => {
+                if (!isDown) return;
+                isDown = false;
+                el.classList.remove('cursor-grabbing');
+                el.classList.add('cursor-grab');
+                document.body.classList.remove('dragging');
+                
+                // 관성 효과 적용 (부드러운 슬라이딩)
+                const applyInertia = () => {
+                    if (Math.abs(velocity) < 0.1) {
+                        el.style.scrollSnapType = 'x mandatory'; // 스냅 다시 켜기
+                        return;
+                    }
+                    el.scrollLeft -= velocity * 1.5;
+                    velocity *= 0.95; // 마찰력
+                    animationId = requestAnimationFrame(applyInertia);
+                };
+                applyInertia();
+            };
 
+            el.addEventListener('mouseup', stopDragging);
+            el.addEventListener('mouseleave', stopDragging);
+            
+            // 모바일 터치 지원
+            el.addEventListener('touchstart', () => {
+                el.style.scrollSnapType = 'none';
+            }, { passive: true });
             el.addEventListener('touchend', () => {
-                el.classList.add('snap-x', 'snap-mandatory');
+                el.style.scrollSnapType = 'x mandatory';
             }, { passive: true });
         }
 
