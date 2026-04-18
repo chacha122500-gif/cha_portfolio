@@ -173,6 +173,7 @@
                 <button onclick="scrollSlider(400)" class="p-3 rounded-full border border-gray-300 hover:bg-gray-100 transition"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
             </div>
         </div>
+        <!-- cursor-grab 클래스를 추가하여 드래그 가능함을 시각적으로 표시 -->
         <div id="competencies-slider" class="flex overflow-x-auto hide-scrollbar px-6 md:px-12 pb-12 gap-6 md:gap-8 select-none cursor-grab snap-x snap-mandatory"></div>
     </section>
 
@@ -304,7 +305,7 @@
                 </button>
             `).join('');
 
-            // Render Hero Info (Contribution Bar Added)
+            // Render Hero Info
             document.getElementById('hero-content-container').innerHTML = `
                 <div class="w-full md:w-[45%] h-[300px] md:h-auto relative overflow-hidden flex items-center justify-center animate-hero bg-gray-100">
                     <div class="absolute inset-0 w-full h-full bg-cover bg-top transform hover:scale-105 transition-transform duration-700" style="background-image: url('${proj.imageUrl}');"></div>
@@ -315,7 +316,6 @@
                     <h2 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-6 break-keep leading-tight text-gray-900">${proj.title}</h2>
                     <p class="text-base md:text-xl text-gray-500 mb-10 break-keep font-medium leading-relaxed">${proj.desc}</p>
                     
-                    <!-- Contribution Area -->
                     <div class="bg-[#F8F9FA] rounded-2xl p-5 md:p-6 flex gap-8 mb-12 w-max border border-gray-100">
                         ${proj.planning > 0 ? `
                         <div>
@@ -371,7 +371,6 @@
                     <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 break-keep">${proj.title}</h2>
                     <p class="text-xl md:text-2xl text-gray-500 font-light max-w-2xl mx-auto mb-10 break-keep">${proj.desc}</p>
                     
-                    <!-- Modal Contribution Info -->
                     <div class="flex gap-10 justify-center mb-16">
                         ${proj.planning > 0 ? `
                         <div>
@@ -401,11 +400,69 @@
 
         window.scrollSlider = (amount) => document.getElementById('competencies-slider').scrollBy({ left: amount, behavior: 'smooth' });
 
+        // --- Drag to Scroll Logic ---
+        function setupDragToScroll(elementId) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            el.addEventListener('mousedown', (e) => {
+                isDown = true;
+                el.classList.add('cursor-grabbing');
+                el.classList.remove('cursor-grab');
+                // 드래그 중에는 Snap 기능 잠시 제거
+                el.classList.remove('snap-x', 'snap-mandatory');
+                startX = e.pageX - el.offsetLeft;
+                scrollLeft = el.scrollLeft;
+            });
+
+            el.addEventListener('mouseleave', () => {
+                if (!isDown) return;
+                isDown = false;
+                el.classList.remove('cursor-grabbing');
+                el.classList.add('cursor-grab');
+                el.classList.add('snap-x', 'snap-mandatory');
+            });
+
+            el.addEventListener('mouseup', () => {
+                isDown = false;
+                el.classList.remove('cursor-grabbing');
+                el.classList.add('cursor-grab');
+                // 드래그 종료 후 Snap 기능 복구
+                el.classList.add('snap-x', 'snap-mandatory');
+            });
+
+            el.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - el.offsetLeft;
+                const walk = (x - startX) * 2; // 스크롤 속도 배율
+                el.scrollLeft = scrollLeft - walk;
+            });
+
+            // 터치 지원 (모바일용)
+            el.addEventListener('touchstart', (e) => {
+                el.classList.remove('snap-x', 'snap-mandatory');
+            }, { passive: true });
+
+            el.addEventListener('touchend', () => {
+                el.classList.add('snap-x', 'snap-mandatory');
+            }, { passive: true });
+        }
+
         document.addEventListener('DOMContentLoaded', () => { 
             renderHero(); 
             renderCompetencies(); 
             renderSkills(); 
             lucide.createIcons(); 
+            
+            // 핵심 역량 슬라이더에 드래그 기능 적용
+            setupDragToScroll('competencies-slider');
+            // 히어로 탭 슬라이더에도 드래그 기능 적용
+            setupDragToScroll('hero-tabs-container');
         });
     </script>
 </body>
