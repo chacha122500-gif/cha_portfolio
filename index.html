@@ -138,7 +138,7 @@
             html { cursor: auto; }
         }
 
-        /* 역량 섹션 메쉬 그라데이션 효과 */
+        /* 역량 섹션 메쉬 그라데이션 효과 (이미지 기반 고급형) */
         .grad-visual {
             background: radial-gradient(at 0% 0%, hsla(220, 100%, 15%, 1) 0, transparent 60%), 
                         radial-gradient(at 100% 0%, hsla(210, 100%, 10%, 1) 0, transparent 60%), 
@@ -164,6 +164,11 @@
             transform: translateY(-15px) scale(1.02);
             box-shadow: 0 40px 80px -15px rgba(0,0,0,0.4);
         }
+
+        /* 통계 강조 효과 */
+        .stat-glow {
+            text-shadow: 0 0 20px rgba(255,255,255,0.4);
+        }
     </style>
 </head>
 <body class="min-h-screen text-[#111] selection:bg-black selection:text-white">
@@ -178,6 +183,7 @@
             <div class="hidden md:flex space-x-8 text-sm font-medium">
                 <a href="#work" class="hover-target hover:text-gray-500 transition-colors">Work</a>
                 <a href="#competencies" class="hover-target hover:text-gray-500 transition-colors">Competencies</a>
+                <a href="#growth" class="hover-target hover:text-gray-500 transition-colors text-blue-600 font-bold">Growth</a>
                 <a href="#about" class="hover-target hover:text-gray-500 transition-colors">About</a>
             </div>
             <button onclick="location.href='mailto:heyh01003@naver.com'" class="hover-target text-sm font-semibold border border-black rounded-full px-5 py-2 hover:bg-black hover:text-white transition-all">
@@ -223,11 +229,73 @@
         <div class="px-6 md:px-12 mb-10 max-w-screen-2xl mx-auto flex justify-between items-end">
             <h2 class="text-4xl md:text-5xl font-bold tracking-tighter">Core Competencies</h2>
             <div class="flex space-x-2 hidden md:flex">
-                <button onclick="scrollSlider(-400)" class="hover-target p-3 rounded-full border border-gray-300 hover:bg-gray-100 transition"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
-                <button onclick="scrollSlider(400)" class="hover-target p-3 rounded-full border border-gray-300 hover:bg-gray-100 transition"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
+                <button onclick="scrollSlider('competencies-slider', -400)" class="hover-target p-3 rounded-full border border-gray-300 hover:bg-gray-100 transition"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
+                <button onclick="scrollSlider('competencies-slider', 400)" class="hover-target p-3 rounded-full border border-gray-300 hover:bg-gray-100 transition"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
             </div>
         </div>
         <div id="competencies-slider" class="flex overflow-x-auto hide-scrollbar px-6 md:px-12 pb-12 gap-6 md:gap-8 cursor-grab select-none snap-x snap-mandatory"></div>
+    </section>
+
+    <!-- Social Impact & Performance Section (Marketing Mastery) -->
+    <section id="growth" class="py-32 bg-[#020617] text-white overflow-hidden">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="order-2 lg:order-1">
+                    <span class="text-blue-500 font-bold uppercase tracking-widest mb-6 block">Marketing & Performance</span>
+                    <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-tight">
+                        디자인을 넘어<br/>수치로 증명하는 영향력
+                    </h2>
+                    <p class="text-xl text-gray-400 font-light leading-relaxed mb-12 max-w-xl">
+                        사용자의 심리를 꿰뚫는 UI/UX 설계 능력을 마케팅에 녹여냈습니다. 단일 릴스 콘텐츠로 <span class="text-white font-bold">조회수 13.8만 회</span>를 돌파했으며, 평균 5만 회 이상의 성과를 통해 시장을 움직이는 기획력을 입증했습니다.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-8 mb-12">
+                        <div class="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-xl">
+                            <p class="text-gray-500 text-sm font-bold mb-2 uppercase">Max Views</p>
+                            <h3 class="text-4xl md:text-5xl font-black stat-glow text-blue-400">138,000+</h3>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-xl">
+                            <p class="text-gray-500 text-sm font-bold mb-2 uppercase">Avg Views</p>
+                            <h3 class="text-4xl md:text-5xl font-black stat-glow text-cyan-400">50,000+</h3>
+                        </div>
+                    </div>
+
+                    <a href="https://www.instagram.com/reel/DW-84BAAWk7/" target="_blank" class="hover-target inline-flex items-center gap-4 bg-white text-black px-10 py-5 rounded-full font-bold text-lg hover:bg-blue-500 hover:text-white transition-all transform hover:-translate-y-1 shadow-2xl">
+                        콘텐츠 원본 보기 <i data-lucide="instagram" class="w-6 h-6"></i>
+                    </a>
+                </div>
+
+                <div class="order-1 lg:order-2 relative group flex justify-center">
+                    <!-- Reels Mockup UI (Responsive) -->
+                    <div class="relative w-full max-w-[300px] sm:max-w-[380px] lg:max-w-[400px] aspect-[9/16] rounded-[3rem] overflow-hidden border-[8px] border-white/10 shadow-[0_0_100px_rgba(59,130,246,0.3)] transform lg:rotate-3 group-hover:rotate-0 transition-transform duration-700">
+                        <!-- 요청 주소 적용 -->
+                        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://github.com/chacha122500-gif/cha_portfolio/blob/main/000.jpg?raw=true');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80"></div>
+                        
+                        <!-- Reels UI Overlay Mockup -->
+                        <div class="absolute bottom-8 left-6 right-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-full bg-gray-600 border border-white/20 overflow-hidden">
+                                    <div class="w-full h-full bg-slate-400"></div>
+                                </div>
+                                <span class="font-bold text-sm sm:text-base">chacha.wj</span>
+                            </div>
+                            <p class="text-xs sm:text-sm line-clamp-2 opacity-90 mb-6 font-medium leading-relaxed">살목지 보다가 남친 팔뚝 사라질 뻔했어요...‼️ #바이럴 #조회수13.8만</p>
+                            <div class="flex items-center justify-between opacity-80">
+                                <div class="flex gap-4">
+                                    <i data-lucide="heart" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                                    <i data-lucide="message-circle" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                                    <i data-lucide="send" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                                </div>
+                                <i data-lucide="bookmark" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Decorative Element -->
+                    <div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-blue-600/15 rounded-full blur-[120px]"></div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Explore Skills Section -->
@@ -261,14 +329,11 @@
                 </div>
             </div>
             
-            <!-- 요청 사항: 영상 배경 적용 부분 -->
             <div class="relative h-[600px] rounded-3xl overflow-hidden bg-gray-100 p-8 flex flex-col justify-between group shadow-xl">
-                <!-- Video Background -->
                 <div class="absolute inset-0 z-0 overflow-hidden">
                     <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-60">
                         <source src="https://raw.githubusercontent.com/chacha122500-gif/cha_portfolio/main/daw.mp4" type="video/mp4">
                     </video>
-                    <!-- Overlay for better text readability -->
                     <div class="absolute inset-0 bg-gradient-to-br from-gray-100/30 to-gray-200/30 mix-blend-multiply"></div>
                 </div>
                 
@@ -279,8 +344,8 @@
                 </div>
                 <div class="z-10 grid grid-cols-2 gap-4">
                     <div class="bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-sm transform group-hover:-translate-y-2 transition-transform duration-300">
-                        <p class="text-gray-500 text-sm mb-2 font-bold uppercase">Tools</p>
-                        <p class="font-bold text-xl">Adobe CC / Figma</p>
+                        <p class="text-gray-500 text-sm mb-2 font-bold uppercase">Generative AI</p>
+                        <p class="font-bold text-xl">Gemini / GPT / Midjourney</p>
                     </div>
                     <div class="bg-black text-white p-6 rounded-2xl shadow-sm col-span-2 flex items-center justify-between">
                         <div>
@@ -321,76 +386,14 @@
         const skills = ["Figma", "Photoshop", "Illustrator", "ChatGPT", "Claude", "Midjourney", "GitHub", "HTML", "CSS", "UI/UX", "Generative AI", "Mobile UI"];
 
         const projects = [
-            { 
-                title: "ABC타이어 홈페이지", 
-                tabName: "홈페이지",
-                desc: "메인 홈페이지 리뉴얼 및 전체 디자인 시스템 구축<br/>메인배너 이미지 및 이벤트 배너 전부 제작", 
-                tags: ["Web"], color: "bg-[#00D65F]", heroBg: "bg-[#00D65F]", textColor: "text-white", 
-                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/abctire.png?raw=true", 
-                figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-429", 
-                liveLink: "https://abctire.co.kr/", planning: 50, design: 100 
-            },
-            { 
-                title: "ABC타이어 상세페이지", 
-                tabName: "상세페이지",
-                desc: "제품 상세페이지 기획 및 템플릿 디자인<br/>상세페이지 영상 gif 제작", 
-                tags: ["Detail Page"], color: "bg-[#0055FF]", heroBg: "bg-[#0055FF]", textColor: "text-white", 
-                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EC%83%81%ED%8E%98.png?raw=true", 
-                figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-28587", 
-                liveLink: "", planning: 100, design: 100 
-            },
-            { 
-                title: "ABC타이어 OA 리뉴얼", 
-                tabName: "OA리뉴얼",
-                desc: "사내 업무 시스템 UI/UX 개선", 
-                tags: ["Backoffice"], color: "bg-[#FFB000]", heroBg: "bg-[#FFB000]", textColor: "text-black", 
-                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A1%9C%EA%B7%B8%EC%9D%B8%20ui.png?raw=true", 
-                figmaLink: "", liveLink: "", planning: 0, design: 80 
-            },
-            { 
-                title: "ABC타이어 렌탈 사이트", 
-                tabName: "렌탈서비스", 
-                desc: "신규 타이어 렌탈 서비스 플랫폼 구축<br/>디자인 유지보수 및 이벤트 배너 전부 제작", 
-                tags: ["Web"], color: "bg-[#FF2A6D]", heroBg: "bg-[#FF2A6D]", textColor: "text-white", 
-                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A0%8C%ED%83%88%EB%A9%94%EC%9D%B8.png?raw=true", 
-                figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=9-159825", 
-                liveLink: "https://nexen-rental.com/rental", planning: 100, design: 100 
-            },
-            { 
-                title: "한양 YK인터칼리지 OA", 
-                tabName: "YK인터칼리지",
-                desc: "교육 기관 웹사이트 디자인", 
-                tags: ["Web"], color: "bg-[#003B5C]", heroBg: "bg-[#003B5C]", textColor: "text-white", 
-                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/YK%EC%9D%B8%ED%84%B0%EC%B9%BC%EB%A6%AC%EC%A7%80.png?raw=true", 
-                figmaLink: "https://www.figma.com/design/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-31013", 
-                liveLink: "", planning: 0, design: 90 
-            },
-            { 
-                title: "PlainFlowerClub", 
-                tabName: "브랜드커머스",
-                desc: "브랜드 커머스 사이트 기획 및 디자인", 
-                tags: ["Web"], color: "bg-[#8A2BE2]", heroBg: "bg-[#8A2BE2]", textColor: "text-white", 
-                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A9%94%EC%9D%B8%EC%8B%9C%EC%95%88%20v2.0.png?raw=true", 
-                figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-17925", 
-                liveLink: "https://www.instagram.com/plainflowerclub.official/", planning: 80, design: 100 
-            },
-            { 
-                title: "고사장", 
-                tabName: "고사장",
-                desc: "서비스 디자인 참여", 
-                tags: ["Web"], color: "bg-[#FF4500]", heroBg: "bg-[#FF4500]", textColor: "text-white", 
-                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/59549_84184_1547.jpg?raw=true", 
-                figmaLink: "", liveLink: "https://www.mhns.co.kr/news/articleView.html?idxno=704760", planning: 0, design: 50 
-            },
-            { 
-                title: "allparts", 
-                tabName: "allparts",
-                desc: "명품 자동차 부품 거래 모바일 앱", 
-                tags: ["App"], color: "bg-[#111111]", heroBg: "bg-[#111111]", textColor: "text-white", 
-                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/all.png?raw=true", 
-                figmaLink: "https://www.figma.com/design/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-142423", 
-                liveLink: "", planning: 0, design: 100 
-            }
+            { title: "ABC타이어 홈페이지", tabName: "홈페이지", desc: "메인 홈페이지 리뉴얼 및 전체 디자인 시스템 구축<br/>메인배너 이미지 및 이벤트 배너 전부 제작", tags: ["Web"], color: "bg-[#00D65F]", heroBg: "bg-[#00D65F]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/abctire.png?raw=true", figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-429", liveLink: "https://abctire.co.kr/", planning: 50, design: 100 },
+            { title: "ABC타이어 상세페이지", tabName: "상세페이지", desc: "제품 상세페이지 기획 및 템플릿 디자인<br/>상세페이지 영상 gif 제작", tags: ["Detail Page"], color: "bg-[#0055FF]", heroBg: "bg-[#0055FF]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EC%83%81%ED%8E%98.png?raw=true", figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-28587", liveLink: "", planning: 100, design: 100 },
+            { title: "ABC타이어 OA 리뉴얼", tabName: "OA리뉴얼", desc: "사내 업무 시스템 UI/UX 개선", tags: ["Backoffice"], color: "bg-[#FFB000]", heroBg: "bg-[#FFB000]", textColor: "text-black", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A1%9C%EA%B7%B8%EC%9D%B8%20ui.png?raw=true", figmaLink: "", liveLink: "", planning: 0, design: 80 },
+            { title: "ABC타이어 렌탈 사이트", tabName: "렌탈서비스", desc: "신규 타이어 렌탈 서비스 플랫폼 구축<br/>디자인 유지보수 및 이벤트 배너 전부 제작", tags: ["Web"], color: "bg-[#FF2A6D]", heroBg: "bg-[#FF2A6D]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A0%8C%ED%83%88%EB%A9%94%EC%9D%B8.png?raw=true", figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=9-159825", liveLink: "https://nexen-rental.com/rental", planning: 100, design: 100 },
+            { title: "한양 YK인터칼리지 OA", tabName: "YK인터칼리지", desc: "교육 기관 웹사이트 디자인", tags: ["Web"], color: "bg-[#003B5C]", heroBg: "bg-[#003B5C]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/YK%EC%9D%B8%ED%84%B0%EC%B9%BC%EB%A6%AC%EC%A7%80.png?raw=true", figmaLink: "https://www.figma.com/design/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-31013", liveLink: "", planning: 0, design: 90 },
+            { title: "PlainFlowerClub", tabName: "브랜드커머스", desc: "브랜드 커머스 사이트 기획 및 디자인", tags: ["Web"], color: "bg-[#8A2BE2]", heroBg: "bg-[#8A2BE2]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A9%94%EC%9D%B8%EC%8B%9C%EC%95%88%20v2.0.png?raw=true", figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-17925", liveLink: "https://www.instagram.com/plainflowerclub.official/", planning: 80, design: 100 },
+            { title: "고사장", tabName: "고사장", desc: "서비스 디자인 참여", tags: ["Web"], color: "bg-[#FF4500]", heroBg: "bg-[#FF4500]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/59549_84184_1547.jpg?raw=true", figmaLink: "", liveLink: "https://www.mhns.co.kr/news/articleView.html?idxno=704760", planning: 0, design: 50 },
+            { title: "allparts", tabName: "allparts", desc: "명품 자동차 부품 거래 모바일 앱", tags: ["App"], color: "bg-[#111111]", heroBg: "bg-[#111111]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/all.png?raw=true", figmaLink: "https://www.figma.com/design/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-142423", liveLink: "", planning: 0, design: 100 }
         ];
 
         const competencies = [
@@ -427,12 +430,10 @@
                     <span class="text-[11px] font-bold px-3 py-1.5 border border-gray-100 text-gray-500 rounded-full uppercase w-max mb-6">${proj.tags[0]}</span>
                     <h2 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-6 break-keep leading-tight text-gray-900">${proj.title}</h2>
                     <p class="text-base md:text-xl text-gray-500 mb-10 break-keep font-medium leading-relaxed">${proj.desc}</p>
-                    
                     <div class="bg-[#F8F9FA] rounded-2xl p-5 md:p-6 flex gap-8 mb-12 w-max border border-gray-100">
                         ${proj.planning > 0 ? `<div><p class="text-[11px] text-gray-400 font-bold mb-1 uppercase tracking-wider">기획</p><p class="text-2xl font-black text-gray-900">${proj.planning}%</p></div>` : ''}
                         <div><p class="text-[11px] text-gray-400 font-bold mb-1 uppercase tracking-wider">디자인</p><p class="text-2xl font-black text-gray-900">${proj.design}%</p></div>
                     </div>
-
                     <div class="flex gap-4 flex-wrap items-center mt-auto pt-8 border-t border-gray-100">
                         <button onclick="openModal(${activeHeroIndex})" class="hover-target px-8 py-4 bg-black text-white rounded-full text-sm font-bold shadow-md hover:bg-gray-800 transition-colors">자세히 보기</button>
                         ${proj.figmaLink ? `<a href="${proj.figmaLink}" target="_blank" class="hover-target px-8 py-4 border border-gray-200 rounded-full text-sm font-bold hover:border-black transition-colors">Figma 보기</a>` : ''}
@@ -497,7 +498,7 @@
             document.body.style.overflow = '';
         };
 
-        window.scrollSlider = (amount) => document.getElementById('competencies-slider').scrollBy({ left: amount, behavior: 'smooth' });
+        window.scrollSlider = (id, amount) => document.getElementById(id).scrollBy({ left: amount, behavior: 'smooth' });
 
         function setupDragToScroll(elementId) {
             const el = document.getElementById(elementId);
