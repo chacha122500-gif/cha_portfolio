@@ -110,7 +110,6 @@
             background-color: #FAFAFA;
         }
         
-        /* 드래그 상태일 때 텍스트 선택 방지 */
         .dragging {
             user-select: none;
         }
@@ -127,7 +126,8 @@
                 <a href="#competencies" class="hover:text-gray-500 transition-colors">Competencies</a>
                 <a href="#about" class="hover:text-gray-500 transition-colors">About</a>
             </div>
-            <button onclick="window.location.href='tel:01059015462'" class="text-sm font-semibold border border-black rounded-full px-5 py-2 hover:bg-black hover:text-white transition-all">
+            <!-- Contact Me 버튼: 클릭 시 메일 작성 실행 -->
+            <button onclick="location.href='mailto:heyh01003@naver.com'" class="text-sm font-semibold border border-black rounded-full px-5 py-2 hover:bg-black hover:text-white transition-all">
                 Contact Me
             </button>
         </div>
@@ -178,7 +178,6 @@
                 <button onclick="scrollSlider(400)" class="p-3 rounded-full border border-gray-300 hover:bg-gray-100 transition"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
             </div>
         </div>
-        <!-- 마우스 드래그를 위해 snap 클래스는 JS에서 유동적으로 조절합니다. -->
         <div id="competencies-slider" class="flex overflow-x-auto hide-scrollbar px-6 md:px-12 pb-12 gap-6 md:gap-8 cursor-grab select-none snap-x snap-mandatory"></div>
     </section>
 
@@ -228,8 +227,13 @@
         <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
             <div><h2 class="text-4xl md:text-6xl font-bold tracking-tighter mb-4">Let's create<br/>something great.</h2></div>
             <div class="flex flex-col gap-4 text-lg">
-                <a href="mailto:chaje0607@naver.com" class="hover:text-gray-300 transition-colors flex items-center gap-4 border-b border-gray-800 pb-2">Email <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-                <a href="tel:01059015462" class="hover:text-gray-300 transition-colors flex items-center gap-4 border-b border-gray-800 pb-2">Phone <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+                <!-- 푸터 이메일 링크: 클릭 시 메일 작성 실행 -->
+                <a href="mailto:heyh01003@naver.com" class="hover:text-gray-300 transition-colors flex items-center gap-4 border-b border-gray-800 pb-2">
+                    Email (heyh01003@naver.com) <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+                <a href="tel:01059015462" class="hover:text-gray-300 transition-colors flex items-center gap-4 border-b border-gray-800 pb-2">
+                    Phone (010-5901-5462) <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
             </div>
         </div>
     </footer>
@@ -250,38 +254,76 @@
         const skills = ["Figma", "Photoshop", "Illustrator", "ChatGPT", "Claude", "Midjourney", "GitHub", "HTML", "CSS", "UI/UX", "Generative AI", "Mobile UI"];
 
         const projects = [
-            { title: "ABC타이어 홈페이지", desc: "메인 홈페이지 리뉴얼 및 전체 디자인 시스템 구축", tags: ["Web"], color: "bg-[#00D65F]", heroBg: "bg-[#00D65F]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/abctire.png?raw=true", figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-429", liveLink: "https://abctire.co.kr/", planning: 50, design: 100 },
-            { title: "ABC타이어 상세페이지", desc: "제품 상세페이지 기획 및 템플릿 디자인", tags: ["Detail Page"], color: "bg-[#0055FF]", heroBg: "bg-[#0055FF]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EC%83%81%ED%8E%98.png?raw=true", figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-28587", liveLink: "", planning: 100, design: 100 },
+            { 
+                title: "ABC타이어 홈페이지", 
+                tabName: "홈페이지",
+                desc: "메인 홈페이지 리뉴얼 및 전체 디자인 시스템 구축<br/>메인배너 이미지 및 이벤트 배너 전부 제작", 
+                tags: ["Web"], color: "bg-[#00D65F]", heroBg: "bg-[#00D65F]", textColor: "text-white", 
+                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/abctire.png?raw=true", 
+                figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-429", 
+                liveLink: "https://abctire.co.kr/", planning: 50, design: 100 
+            },
+            { 
+                title: "ABC타이어 상세페이지", 
+                tabName: "상세페이지",
+                desc: "제품 상세페이지 기획 및 템플릿 디자인<br/>상세페이지 영상 gif 제작", 
+                tags: ["Detail Page"], color: "bg-[#0055FF]", heroBg: "bg-[#0055FF]", textColor: "text-white", 
+                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EC%83%81%ED%8E%98.png?raw=true", 
+                figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-28587", 
+                liveLink: "", planning: 100, design: 100 
+            },
             { 
                 title: "ABC타이어 OA 리뉴얼", 
+                tabName: "OA리뉴얼",
                 desc: "사내 업무 시스템 UI/UX 개선", 
-                tags: ["Backoffice"], 
-                color: "bg-[#FFB000]", 
-                heroBg: "bg-[#FFB000]", 
-                textColor: "text-black", 
+                tags: ["Backoffice"], color: "bg-[#FFB000]", heroBg: "bg-[#FFB000]", textColor: "text-black", 
                 imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A1%9C%EA%B7%B8%EC%9D%B8%20ui.png?raw=true", 
-                figmaLink: "", 
-                liveLink: "", 
-                planning: 0, 
-                design: 80 
+                figmaLink: "", liveLink: "", planning: 0, design: 80 
             },
-            { title: "ABC타이어 렌탈 사이트", desc: "신규 타이어 렌탈 서비스 플랫폼 구축", tags: ["Web"], color: "bg-[#FF2A6D]", heroBg: "bg-[#FF2A6D]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A0%8C%ED%83%88%EB%A9%94%EC%9D%B8.png?raw=true", figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=9-159825", liveLink: "https://nexen-rental.com/rental", planning: 100, design: 100 },
+            { 
+                title: "ABC타이어 렌탈 사이트", 
+                tabName: "렌탈서비스", 
+                desc: "신규 타이어 렌탈 서비스 플랫폼 구축<br/>디자인 유지보수 및 이벤트 배너 전부 제작", 
+                tags: ["Web"], color: "bg-[#FF2A6D]", heroBg: "bg-[#FF2A6D]", textColor: "text-white", 
+                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A0%8C%ED%83%88%EB%A9%94%EC%9D%B8.png?raw=true", 
+                figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=9-159825", 
+                liveLink: "https://nexen-rental.com/rental", planning: 100, design: 100 
+            },
             { 
                 title: "한양 YK인터칼리지 OA", 
+                tabName: "YK인터칼리지",
                 desc: "교육 기관 웹사이트 디자인", 
-                tags: ["Web"], 
-                color: "bg-[#003B5C]", 
-                heroBg: "bg-[#003B5C]", 
-                textColor: "text-white", 
+                tags: ["Web"], color: "bg-[#003B5C]", heroBg: "bg-[#003B5C]", textColor: "text-white", 
                 imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/YK%EC%9D%B8%ED%84%B0%EC%B9%BC%EB%A6%AC%EC%A7%80.png?raw=true", 
                 figmaLink: "https://www.figma.com/design/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-31013", 
-                liveLink: "", 
-                planning: 0, 
-                design: 90 
+                liveLink: "", planning: 0, design: 90 
             },
-            { title: "PlainFlowerClub", desc: "브랜드 커머스 사이트 기획 및 디자인", tags: ["Web"], color: "bg-[#8A2BE2]", heroBg: "bg-[#8A2BE2]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A9%94%EC%9D%B8%EC%8B%9C%EC%95%88%20v2.0.png?raw=true", figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-17925", liveLink: "https://www.instagram.com/plainflowerclub.official/", planning: 80, design: 100 },
-            { title: "고사장", desc: "서비스 디자인 참여", tags: ["Web"], color: "bg-[#FF4500]", heroBg: "bg-[#FF4500]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/59549_84184_1547.jpg?raw=true", figmaLink: "", liveLink: "https://www.mhns.co.kr/news/articleView.html?idxno=704760", planning: 0, design: 50 },
-            { title: "allparts", desc: "명품 자동차 부품 거래 모바일 앱", tags: ["App"], color: "bg-[#111111]", heroBg: "bg-[#111111]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/all.png?raw=true", figmaLink: "https://www.figma.com/design/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-142423", liveLink: "", planning: 0, design: 100 }
+            { 
+                title: "PlainFlowerClub", 
+                tabName: "브랜드커머스",
+                desc: "브랜드 커머스 사이트 기획 및 디자인", 
+                tags: ["Web"], color: "bg-[#8A2BE2]", heroBg: "bg-[#8A2BE2]", textColor: "text-white", 
+                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A9%94%EC%9D%B8%EC%8B%9C%EC%95%88%20v2.0.png?raw=true", 
+                figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-17925", 
+                liveLink: "https://www.instagram.com/plainflowerclub.official/", planning: 80, design: 100 
+            },
+            { 
+                title: "고사장", 
+                tabName: "고사장",
+                desc: "서비스 디자인 참여", 
+                tags: ["Web"], color: "bg-[#FF4500]", heroBg: "bg-[#FF4500]", textColor: "text-white", 
+                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/59549_84184_1547.jpg?raw=true", 
+                figmaLink: "", liveLink: "https://www.mhns.co.kr/news/articleView.html?idxno=704760", planning: 0, design: 50 
+            },
+            { 
+                title: "allparts", 
+                tabName: "allparts",
+                desc: "명품 자동차 부품 거래 모바일 앱", 
+                tags: ["App"], color: "bg-[#111111]", heroBg: "bg-[#111111]", textColor: "text-white", 
+                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/all.png?raw=true", 
+                figmaLink: "https://www.figma.com/design/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-142423", 
+                liveLink: "", planning: 0, design: 100 
+            }
         ];
 
         const competencies = [
@@ -305,12 +347,12 @@
                     <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${activeHeroIndex === idx ? 'bg-[#0055FF] text-white shadow-lg' : 'bg-gray-100 text-gray-400 group-hover:bg-gray-200'}">
                         <i data-lucide="layout" class="w-6 h-6"></i>
                     </div>
-                    <span class="text-xs ${activeHeroIndex === idx ? 'font-black text-black' : 'font-medium text-gray-400'}">${p.title.split(' ')[0]}</span>
+                    <span class="text-xs ${activeHeroIndex === idx ? 'font-black text-black' : 'font-medium text-gray-400'}">${p.tabName}</span>
                     <div class="absolute bottom-[-2px] left-0 w-full h-[2px] ${activeHeroIndex === idx ? 'bg-[#0055FF]' : 'bg-transparent'}"></div>
                 </button>
             `).join('');
 
-            // Render Hero Info (Contribution Bar Added)
+            // Render Hero Info
             document.getElementById('hero-content-container').innerHTML = `
                 <div class="w-full md:w-[45%] h-[300px] md:h-auto relative overflow-hidden flex items-center justify-center animate-hero bg-gray-100">
                     <div class="absolute inset-0 w-full h-full bg-cover bg-top transform hover:scale-105 transition-transform duration-700" style="background-image: url('${proj.imageUrl}');"></div>
@@ -321,18 +363,9 @@
                     <h2 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-6 break-keep leading-tight text-gray-900">${proj.title}</h2>
                     <p class="text-base md:text-xl text-gray-500 mb-10 break-keep font-medium leading-relaxed">${proj.desc}</p>
                     
-                    <!-- Contribution Area -->
                     <div class="bg-[#F8F9FA] rounded-2xl p-5 md:p-6 flex gap-8 mb-12 w-max border border-gray-100">
-                        ${proj.planning > 0 ? `
-                        <div>
-                            <p class="text-[11px] text-gray-400 font-bold mb-1 uppercase tracking-wider">기획</p>
-                            <p class="text-2xl font-black text-gray-900">${proj.planning}%</p>
-                        </div>
-                        ` : ''}
-                        <div>
-                            <p class="text-[11px] text-gray-400 font-bold mb-1 uppercase tracking-wider">디자인</p>
-                            <p class="text-2xl font-black text-gray-900">${proj.design}%</p>
-                        </div>
+                        ${proj.planning > 0 ? `<div><p class="text-[11px] text-gray-400 font-bold mb-1 uppercase tracking-wider">기획</p><p class="text-2xl font-black text-gray-900">${proj.planning}%</p></div>` : ''}
+                        <div><p class="text-[11px] text-gray-400 font-bold mb-1 uppercase tracking-wider">디자인</p><p class="text-2xl font-black text-gray-900">${proj.design}%</p></div>
                     </div>
 
                     <div class="flex gap-4 flex-wrap items-center mt-auto pt-8 border-t border-gray-100">
@@ -376,21 +409,10 @@
                 <div class="max-w-screen-lg mx-auto px-6 py-12 md:py-20 text-center animate-hero">
                     <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 break-keep">${proj.title}</h2>
                     <p class="text-xl md:text-2xl text-gray-500 font-light max-w-2xl mx-auto mb-10 break-keep">${proj.desc}</p>
-                    
-                    <!-- Modal Contribution Info -->
                     <div class="flex gap-10 justify-center mb-16">
-                        ${proj.planning > 0 ? `
-                        <div>
-                            <p class="text-xs text-gray-400 font-bold mb-1 uppercase">기획 관여도</p>
-                            <p class="text-4xl font-black">${proj.planning}%</p>
-                        </div>
-                        ` : ''}
-                        <div>
-                            <p class="text-xs text-gray-400 font-bold mb-1 uppercase">디자인 기여도</p>
-                            <p class="text-4xl font-black">${proj.design}%</p>
-                        </div>
+                        ${proj.planning > 0 ? `<div><p class="text-xs text-gray-400 font-bold mb-1 uppercase">기획 관여도</p><p class="text-4xl font-black">${proj.planning}%</p></div>` : ''}
+                        <div><p class="text-xs text-gray-400 font-bold mb-1 uppercase">디자인 기여도</p><p class="text-4xl font-black">${proj.design}%</p></div>
                     </div>
-
                     <div class="w-full rounded-2xl overflow-hidden shadow-2xl bg-gray-50 min-h-[400px] flex items-center justify-center border p-2 md:p-8">
                         <img src="${proj.imageUrl}" alt="${proj.title}" class="w-full h-auto rounded-xl shadow-md" />
                     </div>
@@ -407,86 +429,38 @@
 
         window.scrollSlider = (amount) => document.getElementById('competencies-slider').scrollBy({ left: amount, behavior: 'smooth' });
 
-        // --- Drag to Scroll Logic ---
         function setupDragToScroll(elementId) {
             const el = document.getElementById(elementId);
             if (!el) return;
-
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-            let velocity = 0;
-            let lastX = 0;
-            let animationId;
-
+            let isDown = false, startX, scrollLeft, velocity = 0, lastX = 0, animationId;
             el.addEventListener('mousedown', (e) => {
-                isDown = true;
-                el.classList.add('cursor-grabbing');
-                el.classList.remove('cursor-grab');
-                document.body.classList.add('dragging');
-                
-                // 드래그 중에는 Snap 기능 잠시 끄기 (CSS 스타일 직접 제어)
-                el.style.scrollSnapType = 'none';
-                
-                startX = e.pageX - el.offsetLeft;
-                scrollLeft = el.scrollLeft;
-                cancelAnimationFrame(animationId);
+                isDown = true; el.classList.add('cursor-grabbing'); el.classList.remove('cursor-grab');
+                document.body.classList.add('dragging'); el.style.scrollSnapType = 'none';
+                startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft; cancelAnimationFrame(animationId);
             });
-
             el.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - el.offsetLeft;
-                const walk = (x - startX) * 1.5; // 드래그 강도 조절
-                el.scrollLeft = scrollLeft - walk;
-                
-                // 관성을 위한 속도 계산
-                velocity = x - lastX;
-                lastX = x;
+                if (!isDown) return; e.preventDefault();
+                const x = e.pageX - el.offsetLeft; const walk = (x - startX) * 1.5;
+                el.scrollLeft = scrollLeft - walk; velocity = x - lastX; lastX = x;
             });
-
             const stopDragging = () => {
-                if (!isDown) return;
-                isDown = false;
-                el.classList.remove('cursor-grabbing');
-                el.classList.add('cursor-grab');
+                if (!isDown) return; isDown = false;
+                el.classList.remove('cursor-grabbing'); el.classList.add('cursor-grab');
                 document.body.classList.remove('dragging');
-                
-                // 관성 효과 적용 (부드러운 슬라이딩)
                 const applyInertia = () => {
-                    if (Math.abs(velocity) < 0.1) {
-                        el.style.scrollSnapType = 'x mandatory'; // 스냅 다시 켜기
-                        return;
-                    }
-                    el.scrollLeft -= velocity * 1.5;
-                    velocity *= 0.95; // 마찰력
-                    animationId = requestAnimationFrame(applyInertia);
+                    if (Math.abs(velocity) < 0.1) { el.style.scrollSnapType = 'x mandatory'; return; }
+                    el.scrollLeft -= velocity * 1.5; velocity *= 0.95; animationId = requestAnimationFrame(applyInertia);
                 };
                 applyInertia();
             };
-
-            el.addEventListener('mouseup', stopDragging);
-            el.addEventListener('mouseleave', stopDragging);
-            
-            // 모바일 터치 지원
-            el.addEventListener('touchstart', () => {
-                el.style.scrollSnapType = 'none';
-            }, { passive: true });
-            el.addEventListener('touchend', () => {
-                el.style.scrollSnapType = 'x mandatory';
-            }, { passive: true });
+            el.addEventListener('mouseup', stopDragging); el.addEventListener('mouseleave', stopDragging);
+            el.addEventListener('touchstart', () => { el.style.scrollSnapType = 'none'; }, { passive: true });
+            el.addEventListener('touchend', () => { el.style.scrollSnapType = 'x mandatory'; }, { passive: true });
         }
 
         document.addEventListener('DOMContentLoaded', () => { 
-            renderHero(); 
-            renderCompetencies(); 
-            renderSkills(); 
-            lucide.createIcons(); 
-            
-            // 핵심 역량 슬라이더에 드래그 기능 적용
-            setupDragToScroll('competencies-slider');
-            // 히어로 탭 슬라이더에도 드래그 기능 적용
-            setupDragToScroll('hero-tabs-container');
+            renderHero(); renderCompetencies(); renderSkills(); lucide.createIcons(); 
+            setupDragToScroll('competencies-slider'); setupDragToScroll('hero-tabs-container');
         });
     </script>
 </body>
