@@ -70,12 +70,6 @@
         .modal-visible .modal-content-panel {
             transform: translateY(0);
         }
-        @keyframes slideUpFade {
-            0% { opacity: 0; transform: translateY(40px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        .animate-stagger-1 { animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; opacity: 0; }
-        .animate-stagger-2 { animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards; opacity: 0; }
 
         /* 손그림 화살표 애니메이션 */
         .draw-line {
@@ -104,6 +98,7 @@
 
         html {
             scroll-behavior: smooth;
+            cursor: none; /* 기본 커서 숨김 */
         }
         body {
             font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
@@ -113,21 +108,79 @@
         .dragging {
             user-select: none;
         }
+
+        /* 트렌디한 커스텀 커서 스타일 */
+        #custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, transform 0.1s ease-out;
+            display: none;
+        }
+        #custom-cursor.active {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            mix-blend-mode: difference;
+        }
+
+        @media (max-width: 1024px) {
+            #custom-cursor { display: none !important; }
+            html { cursor: auto; }
+        }
+
+        /* 역량 섹션 메쉬 그라데이션 효과 */
+        .grad-visual {
+            background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                        radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                        radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            background-color: #0b0b0f;
+        }
+        .grad-ai {
+            background: radial-gradient(at 0% 100%, hsla(189,100%,56%,1) 0, transparent 50%), 
+                        radial-gradient(at 100% 100%, hsla(242,100%,70%,1) 0, transparent 50%), 
+                        radial-gradient(at 50% 50%, hsla(242,80%,10%,1) 0, transparent 50%);
+            background-color: #000;
+        }
+        .grad-tech {
+            background: radial-gradient(at 0% 0%, hsla(160,100%,90%,1) 0, transparent 50%), 
+                        radial-gradient(at 100% 100%, hsla(180,100%,85%,1) 0, transparent 50%);
+            background-color: #f0fdfa;
+        }
+
+        .comp-card {
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+        }
+        .comp-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.25);
+        }
     </style>
 </head>
 <body class="min-h-screen text-[#111] selection:bg-black selection:text-white">
+
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-[#FAFAFA]/90 backdrop-blur-md border-b border-gray-100">
         <div class="max-w-screen-2xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="font-bold text-xl tracking-tighter">CHACHA PORTFOLIO.</div>
             <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#work" class="hover:text-gray-500 transition-colors">Work</a>
-                <a href="#competencies" class="hover:text-gray-500 transition-colors">Competencies</a>
-                <a href="#about" class="hover:text-gray-500 transition-colors">About</a>
+                <a href="#work" class="hover-target hover:text-gray-500 transition-colors">Work</a>
+                <a href="#competencies" class="hover-target hover:text-gray-500 transition-colors">Competencies</a>
+                <a href="#about" class="hover-target hover:text-gray-500 transition-colors">About</a>
             </div>
-            <!-- Contact Me 버튼: 클릭 시 메일 작성 실행 -->
-            <button onclick="location.href='mailto:heyh01003@naver.com'" class="text-sm font-semibold border border-black rounded-full px-5 py-2 hover:bg-black hover:text-white transition-all">
+            <button onclick="location.href='mailto:heyh01003@naver.com'" class="hover-target text-sm font-semibold border border-black rounded-full px-5 py-2 hover:bg-black hover:text-white transition-all">
                 Contact Me
             </button>
         </div>
@@ -153,10 +206,10 @@
                 </div>
             </div>
             <div class="flex items-center gap-3 relative z-10 mt-16 md:mt-0">
-                <button onclick="prevHero(event)" class="w-12 h-12 rounded-full border border-gray-300 hover:bg-black hover:text-white flex items-center justify-center transition-colors shadow-sm">
+                <button onclick="prevHero(event)" class="hover-target w-12 h-12 rounded-full border border-gray-300 hover:bg-black hover:text-white flex items-center justify-center transition-colors shadow-sm">
                     <i data-lucide="chevron-left" class="w-6 h-6"></i>
                 </button>
-                <button onclick="nextHero(event)" class="w-12 h-12 rounded-full border border-gray-300 hover:bg-black hover:text-white flex items-center justify-center transition-colors shadow-sm">
+                <button onclick="nextHero(event)" class="hover-target w-12 h-12 rounded-full border border-gray-300 hover:bg-black hover:text-white flex items-center justify-center transition-colors shadow-sm">
                     <i data-lucide="chevron-right" class="w-6 h-6"></i>
                 </button>
             </div>
@@ -174,8 +227,8 @@
         <div class="px-6 md:px-12 mb-10 max-w-screen-2xl mx-auto flex justify-between items-end">
             <h2 class="text-4xl md:text-5xl font-bold tracking-tighter">Core Competencies</h2>
             <div class="flex space-x-2 hidden md:flex">
-                <button onclick="scrollSlider(-400)" class="p-3 rounded-full border border-gray-300 hover:bg-gray-100 transition"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
-                <button onclick="scrollSlider(400)" class="p-3 rounded-full border border-gray-300 hover:bg-gray-100 transition"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
+                <button onclick="scrollSlider(-400)" class="hover-target p-3 rounded-full border border-gray-300 hover:bg-gray-100 transition"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
+                <button onclick="scrollSlider(400)" class="hover-target p-3 rounded-full border border-gray-300 hover:bg-gray-100 transition"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
             </div>
         </div>
         <div id="competencies-slider" class="flex overflow-x-auto hide-scrollbar px-6 md:px-12 pb-12 gap-6 md:gap-8 cursor-grab select-none snap-x snap-mandatory"></div>
@@ -186,7 +239,7 @@
         <div class="max-w-screen-2xl mx-auto px-6 md:px-12 mb-10">
             <div class="flex justify-between items-end">
                 <h2 class="text-4xl md:text-5xl font-black tracking-tighter">Explore</h2>
-                <button class="text-sm font-bold flex items-center gap-1 hover:text-gray-500 transition-colors">More <i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                <button class="hover-target text-sm font-bold flex items-center gap-1 hover:text-gray-500 transition-colors">More <i data-lucide="chevron-right" class="w-4 h-4"></i></button>
             </div>
         </div>
         <div class="relative w-full flex overflow-x-hidden border-y border-gray-100 py-8">
@@ -227,13 +280,8 @@
         <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
             <div><h2 class="text-4xl md:text-6xl font-bold tracking-tighter mb-4">Let's create<br/>something great.</h2></div>
             <div class="flex flex-col gap-4 text-lg">
-                <!-- 푸터 이메일 링크: 클릭 시 메일 작성 실행 -->
-                <a href="mailto:heyh01003@naver.com" class="hover:text-gray-300 transition-colors flex items-center gap-4 border-b border-gray-800 pb-2">
-                    Email (heyh01003@naver.com) <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                </a>
-                <a href="tel:01059015462" class="hover:text-gray-300 transition-colors flex items-center gap-4 border-b border-gray-800 pb-2">
-                    Phone (010-5901-5462) <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                </a>
+                <a href="mailto:heyh01003@naver.com" class="hover-target hover:text-gray-300 transition-colors flex items-center gap-4 border-b border-gray-800 pb-2">Email (heyh01003@naver.com) <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+                <a href="tel:01059015462" class="hover-target hover:text-gray-300 transition-colors flex items-center gap-4 border-b border-gray-800 pb-2">Phone (010-5901-5462) <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
             </div>
         </div>
     </footer>
@@ -243,7 +291,7 @@
         <div class="modal-content-panel w-full md:w-[90vw] lg:w-[80vw] h-[95vh] bg-white rounded-t-3xl overflow-hidden flex flex-col relative shadow-2xl">
             <div class="absolute top-0 left-0 right-0 h-20 bg-white/90 backdrop-blur-md z-10 flex justify-between items-center px-8 border-b border-gray-100">
                 <span id="modal-project-title" class="font-black text-xl tracking-tighter">Project Detail</span>
-                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+                <button onclick="closeModal()" class="hover-target w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
             <div class="flex-1 overflow-y-auto pt-20 hide-scrollbar pb-32" id="modal-inner-content"></div>
         </div>
@@ -327,9 +375,9 @@
         ];
 
         const competencies = [
-            { title: "압도적인 시안 도출 & 시각 디자인", subtitle: "Visual Design Mastery", desc: "다양한 디자인 베리에이션과 고퀄리티 메인 배너 및 상세페이지를 빠르게 제안합니다.", tags: ["Figma", "Photoshop"], color: "bg-[#F4F4F4]", textColor: "text-black" },
-            { title: "AI 기반 크리에이티브 & 에셋 생성", subtitle: "Generative AI Engineering", desc: "생성형 AI를 실무에 적극 도입하여 디자인 생산성을 극대화합니다.", tags: ["Midjourney", "ChatGPT"], color: "bg-[#111111]", textColor: "text-white" },
-            { title: "실현 가능한 설계 & 기술 이해도", subtitle: "Frontend & Automation", desc: "HTML/CSS에 대한 이해를 바탕으로 개발자와 원활하게 소통합니다.", tags: ["HTML/CSS", "GitHub"], color: "bg-[#EAEAEA]", textColor: "text-black" }
+            { title: "압도적인 시안 도출 & 시각 디자인", subtitle: "Visual Design Mastery", desc: "Figma, Photoshop을 활용하여 브랜드 목적에 맞는 다양한 디자인 베리에이션과 고퀄리티 메인 배너를 제안합니다.", tags: ["Figma", "Photoshop"], color: "grad-visual", textColor: "text-white" },
+            { title: "AI 기반 크리에이티브 & 에셋 생성", subtitle: "Generative AI Engineering", desc: "Midjourney, ChatGPT 등 최신 AI를 실무에 도입하여 퀄리티 높은 에셋을 빠르게 제작하고 디자인 생산성을 높입니다.", tags: ["Midjourney", "ChatGPT"], color: "grad-ai", textColor: "text-white" },
+            { title: "실현 가능한 설계 & 기술 이해도", subtitle: "Frontend & Automation", desc: "HTML/CSS에 대한 깊은 이해를 바탕으로 개발자와 원활하게 소통하며, 효율적인 워크플로우를 구축합니다.", tags: ["HTML/CSS", "GitHub"], color: "grad-tech", textColor: "text-black" }
         ];
 
         let activeHeroIndex = 0;
@@ -341,9 +389,8 @@
             let liveIcon = isInstagram ? 'instagram' : (isNews ? 'newspaper' : 'globe');
             let liveText = isInstagram ? 'Instagram 보기' : (isNews ? '관련 뉴스 보기' : '실제 서비스 보기');
 
-            // Render Tabs
             document.getElementById('hero-tabs-container').innerHTML = projects.map((p, idx) => `
-                <button onclick="setActiveHero(${idx})" class="pb-4 whitespace-nowrap transition-colors flex flex-col items-center gap-3 relative group w-24 flex-shrink-0">
+                <button onclick="setActiveHero(${idx})" class="hover-target pb-4 whitespace-nowrap transition-colors flex flex-col items-center gap-3 relative group w-24 flex-shrink-0">
                     <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${activeHeroIndex === idx ? 'bg-[#0055FF] text-white shadow-lg' : 'bg-gray-100 text-gray-400 group-hover:bg-gray-200'}">
                         <i data-lucide="layout" class="w-6 h-6"></i>
                     </div>
@@ -352,14 +399,13 @@
                 </button>
             `).join('');
 
-            // Render Hero Info
             document.getElementById('hero-content-container').innerHTML = `
                 <div class="w-full md:w-[45%] h-[300px] md:h-auto relative overflow-hidden flex items-center justify-center animate-hero bg-gray-100">
                     <div class="absolute inset-0 w-full h-full bg-cover bg-top transform hover:scale-105 transition-transform duration-700" style="background-image: url('${proj.imageUrl}');"></div>
                     <div class="absolute inset-0 bg-black/5 mix-blend-overlay"></div>
                 </div>
                 <div class="w-full md:w-[55%] p-8 md:p-14 lg:p-20 flex flex-col justify-center animate-hero bg-white">
-                    <span class="text-[11px] font-bold px-3 py-1.5 border border-gray-200 text-gray-500 rounded-full uppercase w-max mb-6">${proj.tags[0]}</span>
+                    <span class="text-[11px] font-bold px-3 py-1.5 border border-gray-100 text-gray-500 rounded-full uppercase w-max mb-6">${proj.tags[0]}</span>
                     <h2 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-6 break-keep leading-tight text-gray-900">${proj.title}</h2>
                     <p class="text-base md:text-xl text-gray-500 mb-10 break-keep font-medium leading-relaxed">${proj.desc}</p>
                     
@@ -369,13 +415,14 @@
                     </div>
 
                     <div class="flex gap-4 flex-wrap items-center mt-auto pt-8 border-t border-gray-100">
-                        <button onclick="openModal(${activeHeroIndex})" class="px-8 py-4 bg-black text-white rounded-full text-sm font-bold shadow-md hover:bg-gray-800 transition-colors">자세히 보기</button>
-                        ${proj.figmaLink ? `<a href="${proj.figmaLink}" target="_blank" class="px-8 py-4 border border-gray-200 rounded-full text-sm font-bold hover:border-black transition-colors">Figma 보기</a>` : ''}
-                        ${proj.liveLink ? `<a href="${proj.liveLink}" target="_blank" class="px-8 py-4 border border-gray-200 rounded-full text-sm font-bold hover:border-black transition-colors">${liveText}</a>` : ''}
+                        <button onclick="openModal(${activeHeroIndex})" class="hover-target px-8 py-4 bg-black text-white rounded-full text-sm font-bold shadow-md hover:bg-gray-800 transition-colors">자세히 보기</button>
+                        ${proj.figmaLink ? `<a href="${proj.figmaLink}" target="_blank" class="hover-target px-8 py-4 border border-gray-200 rounded-full text-sm font-bold hover:border-black transition-colors">Figma 보기</a>` : ''}
+                        ${proj.liveLink ? `<a href="${proj.liveLink}" target="_blank" class="hover-target px-8 py-4 border border-gray-200 rounded-full text-sm font-bold hover:border-black transition-colors">${liveText}</a>` : ''}
                     </div>
                 </div>
             `;
             lucide.createIcons();
+            attachCursorEvents();
         }
 
         window.setActiveHero = (idx) => { activeHeroIndex = idx; renderHero(); };
@@ -384,22 +431,26 @@
 
         function renderCompetencies() {
             document.getElementById('competencies-slider').innerHTML = competencies.map((comp, idx) => `
-                <div class="min-w-[85vw] md:min-w-[600px] lg:min-w-[800px] h-[500px] md:h-[600px] rounded-3xl p-10 md:p-16 flex flex-col justify-between snap-center shrink-0 ${comp.color} ${comp.textColor} relative overflow-hidden group">
+                <div class="hover-target comp-card min-w-[85vw] md:min-w-[600px] lg:min-w-[800px] h-[500px] md:h-[600px] rounded-[3rem] p-10 md:p-16 flex flex-col justify-between snap-center shrink-0 ${comp.color} ${comp.textColor} relative overflow-hidden group">
                     <div class="z-10">
-                        <p class="text-sm font-bold uppercase tracking-widest mb-4 opacity-60">${comp.subtitle}</p>
-                        <h3 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-6 leading-tight">${comp.title}</h3>
-                        <p class="text-lg md:text-xl font-light max-w-lg leading-relaxed opacity-80">${comp.desc}</p>
+                        <p class="text-sm font-bold uppercase tracking-[0.2em] mb-6 opacity-70">${comp.subtitle}</p>
+                        <h3 class="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter mb-8 leading-[1.1] break-keep">${comp.title}</h3>
+                        <p class="text-lg md:text-2xl font-light max-w-xl leading-relaxed opacity-90 break-keep">${comp.desc}</p>
                     </div>
-                    <div class="z-10 flex gap-2 flex-wrap mt-8">
-                        ${comp.tags.map(tag => `<span class="text-xs font-bold px-5 py-2 rounded-full uppercase bg-black/10 backdrop-blur-md">${tag}</span>`).join('')}
+                    <div class="z-10 flex gap-3 flex-wrap mt-8">
+                        ${comp.tags.map(tag => `<span class="text-xs font-bold px-6 py-2.5 rounded-full uppercase bg-white/10 backdrop-blur-xl border border-white/20">${tag}</span>`).join('')}
                     </div>
+                    <!-- Decorative Circle -->
+                    <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-white/5 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000"></div>
                 </div>
             `).join('');
+            attachCursorEvents();
         }
 
         function renderSkills() {
             const marqueeSkills = [...skills, ...skills, ...skills];
-            document.getElementById('skills-container').innerHTML = marqueeSkills.map(skill => `<span class="text-lg md:text-2xl font-bold px-8 py-3 rounded-full bg-black text-white cursor-default">${skill}</span>`).join('');
+            document.getElementById('skills-container').innerHTML = marqueeSkills.map(skill => `<span class="hover-target text-lg md:text-2xl font-bold px-8 py-3 rounded-full bg-black text-white cursor-none">${skill}</span>`).join('');
+            attachCursorEvents();
         }
 
         window.openModal = function(idx) {
@@ -420,6 +471,7 @@
             document.getElementById('project-modal').classList.replace('modal-hidden', 'modal-visible');
             document.body.style.overflow = 'hidden';
             lucide.createIcons();
+            attachCursorEvents();
         };
 
         window.closeModal = function() {
@@ -454,13 +506,29 @@
                 applyInertia();
             };
             el.addEventListener('mouseup', stopDragging); el.addEventListener('mouseleave', stopDragging);
-            el.addEventListener('touchstart', () => { el.style.scrollSnapType = 'none'; }, { passive: true });
-            el.addEventListener('touchend', () => { el.style.scrollSnapType = 'x mandatory'; }, { passive: true });
+        }
+
+        // --- 커스텀 커서 로직 ---
+        const cursor = document.getElementById('custom-cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.display = 'block';
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        function attachCursorEvents() {
+            const targets = document.querySelectorAll('.hover-target, button, a, .cursor-grab');
+            targets.forEach(target => {
+                target.addEventListener('mouseenter', () => cursor.classList.add('active'));
+                target.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+            });
         }
 
         document.addEventListener('DOMContentLoaded', () => { 
             renderHero(); renderCompetencies(); renderSkills(); lucide.createIcons(); 
             setupDragToScroll('competencies-slider'); setupDragToScroll('hero-tabs-container');
+            attachCursorEvents();
         });
     </script>
 </body>
