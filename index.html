@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UI/UX CHACHA Designer Portfolio</title>
     
+    <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Lucide Icons (CDN) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- Pretendard Font -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
     <style>
@@ -30,7 +33,7 @@
             animation: heroFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* 마키(흐르는) 애니메이션 복구 */
+        /* 마키(흐르는) 애니메이션 */
         @keyframes marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -110,6 +113,7 @@
 </head>
 <body class="min-h-screen text-[#111] selection:bg-black selection:text-white">
 
+    <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-[#FAFAFA]/90 backdrop-blur-md border-b border-gray-100">
         <div class="max-w-screen-2xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="font-bold text-xl tracking-tighter">CHACHA PORTFOLIO.</div>
@@ -124,8 +128,10 @@
         </div>
     </nav>
 
+    <!-- Main Hero Tab Section -->
     <section id="work" class="pt-32 md:pt-40 pb-10 px-6 md:px-12 max-w-screen-2xl mx-auto min-h-screen flex flex-col justify-center">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 md:mb-32 gap-6 shrink-0 mt-8 relative">
+        <!-- Header & Controls -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-6 shrink-0 mt-8 relative">
             <div class="relative w-full md:w-auto">
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[1.3] mb-12 md:mb-20 relative z-10">
                     사용자는 생각하지 않습니다.<br/>
@@ -133,6 +139,7 @@
                     저는 그 흐름을 설계합니다.
                 </h1>
                 <p class="text-gray-500 font-medium text-lg relative z-10">UI/UX 프로젝트 포트폴리오</p>
+                
                 <div class="absolute -bottom-20 right-10 md:-bottom-28 md:-right-8 lg:-right-16 w-20 md:w-28 lg:w-32 arrow-container z-20 pointer-events-none text-[#0055FF]">
                     <svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="draw-line" d="M20 10 C 80 40, 90 90, 50 140" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
@@ -150,10 +157,14 @@
             </div>
         </div>
 
+        <!-- Horizontal Tabs -->
         <div class="flex overflow-x-auto hide-scrollbar gap-8 md:gap-12 mb-8 border-b-2 border-gray-100 cursor-grab px-2 shrink-0" id="hero-tabs-container"></div>
+
+        <!-- Content Area (Split View) -->
         <div class="flex flex-col md:flex-row bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex-1 min-h-[400px]" id="hero-content-container"></div>
     </section>
 
+    <!-- Core Competencies Section -->
     <section id="competencies" class="py-20 overflow-hidden bg-white">
         <div class="px-6 md:px-12 mb-10 max-w-screen-2xl mx-auto flex justify-between items-end">
             <h2 class="text-4xl md:text-5xl font-bold tracking-tighter">Core Competencies</h2>
@@ -165,7 +176,8 @@
         <div id="competencies-slider" class="flex overflow-x-auto hide-scrollbar px-6 md:px-12 pb-12 gap-6 md:gap-8 select-none cursor-grab snap-x snap-mandatory"></div>
     </section>
 
-    <section id="skills" class="py-24 bg-white text-black overflow-hidden">
+    <!-- Explore Skills Section -->
+    <section id="skills" class="py-24 bg-white text-black overflow-hidden border-t border-gray-50">
         <div class="max-w-screen-2xl mx-auto px-6 md:px-12 mb-10">
             <div class="flex justify-between items-end">
                 <h2 class="text-4xl md:text-5xl font-black tracking-tighter">Explore</h2>
@@ -177,6 +189,7 @@
         </div>
     </section>
 
+    <!-- About Section -->
     <section id="about" class="py-32 px-6 md:px-12 max-w-screen-2xl mx-auto border-t border-gray-100 bg-[#FAFAFA]">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
             <div>
@@ -204,6 +217,7 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="bg-black text-white py-24 px-6 md:px-12">
         <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
             <div><h2 class="text-4xl md:text-6xl font-bold tracking-tighter mb-4">Let's create<br/>something great.</h2></div>
@@ -214,6 +228,7 @@
         </div>
     </footer>
 
+    <!-- Project Detail Modal -->
     <div id="project-modal" class="fixed inset-0 z-[100] modal-overlay modal-hidden flex items-end justify-center bg-black/40" onclick="if(event.target === this) closeModal()">
         <div class="modal-content-panel w-full md:w-[90vw] lg:w-[80vw] h-[95vh] bg-white rounded-t-3xl overflow-hidden flex flex-col relative shadow-2xl">
             <div class="absolute top-0 left-0 right-0 h-20 bg-white/90 backdrop-blur-md z-10 flex justify-between items-center px-8 border-b border-gray-100">
@@ -224,8 +239,9 @@
         </div>
     </div>
 
+    <!-- JS Logic -->
     <script>
-        const skills = ["Figma", "Photoshop", "Illustrator", "ChatGPT", "Claude", "Midjourney", "GitHub", "HTML", "CSS", "UI/UX"];
+        const skills = ["Figma", "Photoshop", "Illustrator", "ChatGPT", "Claude", "Midjourney", "GitHub", "HTML", "CSS", "UI/UX", "Generative AI", "Mobile UI"];
 
         const projects = [
             { title: "ABC타이어 홈페이지", desc: "메인 홈페이지 리뉴얼 및 전체 디자인 시스템 구축", tags: ["Web"], color: "bg-[#00D65F]", heroBg: "bg-[#00D65F]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/abctire.png?raw=true", figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-429", liveLink: "https://abctire.co.kr/", planning: 50, design: 100 },
@@ -237,14 +253,26 @@
                 color: "bg-[#FFB000]", 
                 heroBg: "bg-[#FFB000]", 
                 textColor: "text-black", 
-                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A1%9C%EA%B7%B8%EC%9D%B8%20ui.png?raw=true", // 이 부분만 변경됨
+                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A1%9C%EA%B7%B8%EC%9D%B8%20ui.png?raw=true", 
                 figmaLink: "", 
                 liveLink: "", 
                 planning: 0, 
                 design: 80 
             },
             { title: "ABC타이어 렌탈 사이트", desc: "신규 타이어 렌탈 서비스 플랫폼 구축", tags: ["Web"], color: "bg-[#FF2A6D]", heroBg: "bg-[#FF2A6D]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A0%8C%ED%83%88%EB%A9%94%EC%9D%B8.png?raw=true", figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=9-159825", liveLink: "https://nexen-rental.com/rental", planning: 100, design: 100 },
-            { title: "한양 YK인터칼리지 OA", desc: "교육 기관 웹사이트 디자인", tags: ["Web"], color: "bg-[#003B5C]", heroBg: "bg-[#003B5C]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/YK%EC%9D%B8%ED%84%B0%EC%B9%BC%EB%A6%AC%EC%A7%80.png?raw=true", figmaLink: "https://www.figma.com/design/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-31013", liveLink: "", planning: 0, design: 90 },
+            { 
+                title: "한양 YK인터칼리지 OA", 
+                desc: "교육 기관 웹사이트 디자인", 
+                tags: ["Web"], 
+                color: "bg-[#003B5C]", 
+                heroBg: "bg-[#003B5C]", 
+                textColor: "text-white", 
+                imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/YK%EC%9D%B8%ED%84%B0%EC%B9%BC%EB%A6%AC%EC%A7%80.png?raw=true", 
+                figmaLink: "https://www.figma.com/design/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-31013", 
+                liveLink: "", 
+                planning: 0, 
+                design: 90 
+            },
             { title: "PlainFlowerClub", desc: "브랜드 커머스 사이트 기획 및 디자인", tags: ["Web"], color: "bg-[#8A2BE2]", heroBg: "bg-[#8A2BE2]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/%EB%A9%94%EC%9D%B8%EC%8B%9C%EC%95%88%20v2.0.png?raw=true", figmaLink: "https://www.figma.com/proto/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-17925", liveLink: "https://www.instagram.com/plainflowerclub.official/", planning: 80, design: 100 },
             { title: "고사장", desc: "서비스 디자인 참여", tags: ["Web"], color: "bg-[#FF4500]", heroBg: "bg-[#FF4500]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/59549_84184_1547.jpg?raw=true", figmaLink: "", liveLink: "https://www.mhns.co.kr/news/articleView.html?idxno=704760", planning: 0, design: 50 },
             { title: "allparts", desc: "명품 자동차 부품 거래 모바일 앱", tags: ["App"], color: "bg-[#111111]", heroBg: "bg-[#111111]", textColor: "text-white", imageUrl: "https://github.com/chacha122500-gif/cha_portfolio/blob/main/all.png?raw=true", figmaLink: "https://www.figma.com/design/oforh9Om612XKgMONZLFpU/%E2%98%85?node-id=5-142423", liveLink: "", planning: 0, design: 100 }
@@ -265,28 +293,46 @@
             let liveIcon = isInstagram ? 'instagram' : (isNews ? 'newspaper' : 'globe');
             let liveText = isInstagram ? 'Instagram 보기' : (isNews ? '관련 뉴스 보기' : '실제 서비스 보기');
 
+            // Render Tabs
             document.getElementById('hero-tabs-container').innerHTML = projects.map((p, idx) => `
                 <button onclick="setActiveHero(${idx})" class="pb-4 whitespace-nowrap transition-colors flex flex-col items-center gap-3 relative group w-24 flex-shrink-0">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${activeHeroIndex === idx ? 'bg-[#0055FF] text-white' : 'bg-gray-100 text-gray-400'}">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${activeHeroIndex === idx ? 'bg-[#0055FF] text-white shadow-lg' : 'bg-gray-100 text-gray-400 group-hover:bg-gray-200'}">
                         <i data-lucide="layout" class="w-6 h-6"></i>
                     </div>
-                    <span class="text-sm ${activeHeroIndex === idx ? 'font-black text-black' : 'text-gray-400'}">${p.title.split(' ')[0]}</span>
+                    <span class="text-xs ${activeHeroIndex === idx ? 'font-black text-black' : 'font-medium text-gray-400'}">${p.title.split(' ')[0]}</span>
                     <div class="absolute bottom-[-2px] left-0 w-full h-[2px] ${activeHeroIndex === idx ? 'bg-[#0055FF]' : 'bg-transparent'}"></div>
                 </button>
             `).join('');
 
+            // Render Hero Info (Contribution Bar Added)
             document.getElementById('hero-content-container').innerHTML = `
                 <div class="w-full md:w-[45%] h-[300px] md:h-auto relative overflow-hidden flex items-center justify-center animate-hero bg-gray-100">
                     <div class="absolute inset-0 w-full h-full bg-cover bg-top transform hover:scale-105 transition-transform duration-700" style="background-image: url('${proj.imageUrl}');"></div>
+                    <div class="absolute inset-0 bg-black/5 mix-blend-overlay"></div>
                 </div>
                 <div class="w-full md:w-[55%] p-8 md:p-14 lg:p-20 flex flex-col justify-center animate-hero bg-white">
                     <span class="text-[11px] font-bold px-3 py-1.5 border border-gray-200 text-gray-500 rounded-full uppercase w-max mb-6">${proj.tags[0]}</span>
-                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-6 break-keep leading-tight">${proj.title}</h2>
-                    <p class="text-base md:text-xl text-gray-500 mb-10 break-keep font-medium">${proj.desc}</p>
+                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-6 break-keep leading-tight text-gray-900">${proj.title}</h2>
+                    <p class="text-base md:text-xl text-gray-500 mb-10 break-keep font-medium leading-relaxed">${proj.desc}</p>
+                    
+                    <!-- Contribution Area -->
+                    <div class="bg-[#F8F9FA] rounded-2xl p-5 md:p-6 flex gap-8 mb-12 w-max border border-gray-100">
+                        ${proj.planning > 0 ? `
+                        <div>
+                            <p class="text-[11px] text-gray-400 font-bold mb-1 uppercase tracking-wider">기획</p>
+                            <p class="text-2xl font-black text-gray-900">${proj.planning}%</p>
+                        </div>
+                        ` : ''}
+                        <div>
+                            <p class="text-[11px] text-gray-400 font-bold mb-1 uppercase tracking-wider">디자인</p>
+                            <p class="text-2xl font-black text-gray-900">${proj.design}%</p>
+                        </div>
+                    </div>
+
                     <div class="flex gap-4 flex-wrap items-center mt-auto pt-8 border-t border-gray-100">
-                        <button onclick="openModal(${activeHeroIndex})" class="px-8 py-4 bg-black text-white rounded-full text-sm font-bold shadow-md">자세히 보기</button>
-                        ${proj.figmaLink ? `<a href="${proj.figmaLink}" target="_blank" class="px-8 py-4 border border-gray-200 rounded-full text-sm font-bold">Figma 보기</a>` : ''}
-                        ${proj.liveLink ? `<a href="${proj.liveLink}" target="_blank" class="px-8 py-4 border border-gray-200 rounded-full text-sm font-bold">${liveText}</a>` : ''}
+                        <button onclick="openModal(${activeHeroIndex})" class="px-8 py-4 bg-black text-white rounded-full text-sm font-bold shadow-md hover:bg-gray-800 transition-colors">자세히 보기</button>
+                        ${proj.figmaLink ? `<a href="${proj.figmaLink}" target="_blank" class="px-8 py-4 border border-gray-200 rounded-full text-sm font-bold hover:border-black transition-colors">Figma 보기</a>` : ''}
+                        ${proj.liveLink ? `<a href="${proj.liveLink}" target="_blank" class="px-8 py-4 border border-gray-200 rounded-full text-sm font-bold hover:border-black transition-colors">${liveText}</a>` : ''}
                     </div>
                 </div>
             `;
@@ -299,14 +345,14 @@
 
         function renderCompetencies() {
             document.getElementById('competencies-slider').innerHTML = competencies.map((comp, idx) => `
-                <div class="min-w-[85vw] md:min-w-[600px] lg:min-w-[800px] h-[500px] md:h-[600px] rounded-3xl p-10 md:p-16 flex flex-col justify-between snap-center shrink-0 ${comp.color} ${comp.textColor} relative overflow-hidden">
+                <div class="min-w-[85vw] md:min-w-[600px] lg:min-w-[800px] h-[500px] md:h-[600px] rounded-3xl p-10 md:p-16 flex flex-col justify-between snap-center shrink-0 ${comp.color} ${comp.textColor} relative overflow-hidden group">
                     <div class="z-10">
                         <p class="text-sm font-bold uppercase tracking-widest mb-4 opacity-60">${comp.subtitle}</p>
                         <h3 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-6 leading-tight">${comp.title}</h3>
                         <p class="text-lg md:text-xl font-light max-w-lg leading-relaxed opacity-80">${comp.desc}</p>
                     </div>
                     <div class="z-10 flex gap-2 flex-wrap mt-8">
-                        ${comp.tags.map(tag => `<span class="text-xs font-bold px-5 py-2 rounded-full uppercase bg-white/20 backdrop-blur-md">${tag}</span>`).join('')}
+                        ${comp.tags.map(tag => `<span class="text-xs font-bold px-5 py-2 rounded-full uppercase bg-black/10 backdrop-blur-md">${tag}</span>`).join('')}
                     </div>
                 </div>
             `).join('');
@@ -314,18 +360,33 @@
 
         function renderSkills() {
             const marqueeSkills = [...skills, ...skills, ...skills];
-            document.getElementById('skills-container').innerHTML = marqueeSkills.map(skill => `<span class="text-lg md:text-2xl font-bold px-8 py-3 rounded-full bg-black text-white">${skill}</span>`).join('');
+            document.getElementById('skills-container').innerHTML = marqueeSkills.map(skill => `<span class="text-lg md:text-2xl font-bold px-8 py-3 rounded-full bg-black text-white cursor-default">${skill}</span>`).join('');
         }
 
         window.openModal = function(idx) {
             const proj = projects[idx];
             document.getElementById('modal-project-title').innerText = proj.title;
             document.getElementById('modal-inner-content').innerHTML = `
-                <div class="max-w-screen-lg mx-auto px-6 py-12 md:py-20 text-center">
-                    <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-6">${proj.title}</h2>
-                    <p class="text-xl md:text-2xl text-gray-500 font-light max-w-2xl mx-auto mb-10">${proj.desc}</p>
-                    <div class="w-full rounded-2xl overflow-hidden shadow-2xl bg-gray-50 min-h-[400px] flex items-center justify-center border p-4">
-                        <img src="${proj.imageUrl}" class="w-full h-auto rounded-xl" />
+                <div class="max-w-screen-lg mx-auto px-6 py-12 md:py-20 text-center animate-hero">
+                    <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 break-keep">${proj.title}</h2>
+                    <p class="text-xl md:text-2xl text-gray-500 font-light max-w-2xl mx-auto mb-10 break-keep">${proj.desc}</p>
+                    
+                    <!-- Modal Contribution Info -->
+                    <div class="flex gap-10 justify-center mb-16">
+                        ${proj.planning > 0 ? `
+                        <div>
+                            <p class="text-xs text-gray-400 font-bold mb-1 uppercase">기획 관여도</p>
+                            <p class="text-4xl font-black">${proj.planning}%</p>
+                        </div>
+                        ` : ''}
+                        <div>
+                            <p class="text-xs text-gray-400 font-bold mb-1 uppercase">디자인 기여도</p>
+                            <p class="text-4xl font-black">${proj.design}%</p>
+                        </div>
+                    </div>
+
+                    <div class="w-full rounded-2xl overflow-hidden shadow-2xl bg-gray-50 min-h-[400px] flex items-center justify-center border p-2 md:p-8">
+                        <img src="${proj.imageUrl}" alt="${proj.title}" class="w-full h-auto rounded-xl shadow-md" />
                     </div>
                 </div>`;
             document.getElementById('project-modal').classList.replace('modal-hidden', 'modal-visible');
@@ -340,7 +401,12 @@
 
         window.scrollSlider = (amount) => document.getElementById('competencies-slider').scrollBy({ left: amount, behavior: 'smooth' });
 
-        document.addEventListener('DOMContentLoaded', () => { renderHero(); renderCompetencies(); renderSkills(); lucide.createIcons(); });
+        document.addEventListener('DOMContentLoaded', () => { 
+            renderHero(); 
+            renderCompetencies(); 
+            renderSkills(); 
+            lucide.createIcons(); 
+        });
     </script>
 </body>
 </html>
