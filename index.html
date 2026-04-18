@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UI/UX CHACHA Designer Portfolio</title>
+
+    <!-- Open Graph / KakaoTalk Sharing Meta Tags -->
+    <meta property="og:title" content="UI/UX CHACHA Designer Portfolio">
+    <meta property="og:description" content="사용자는 생각하지 않습니다. 느낍니다. 저는 그 흐름을 설계합니다.">
+    <!-- 요청하신 이미지 주소로 업데이트 -->
+    <meta property="og:image" content="https://github.com/chacha122500-gif/cha_portfolio/blob/main/KakaoTalk_20251228_175900477_02.jpg?raw=true">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CHACHA PORTFOLIO">
+
+    <!-- Twitter Card (Other Platforms) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UI/UX CHACHA Designer Portfolio">
+    <meta name="twitter:description" content="사용자는 생각하지 않습니다. 느낍니다. 저는 그 흐름을 설계합니다.">
+    <meta name="twitter:image" content="https://github.com/chacha122500-gif/cha_portfolio/blob/main/KakaoTalk_20251228_175900477_02.jpg?raw=true">
     
     <!-- 이미지 로딩 속도 향상을 위한 Preconnect 설정 -->
     <link rel="preconnect" href="https://github.com">
@@ -285,7 +299,6 @@
 
                 <div class="order-1 lg:order-2 relative group flex justify-center">
                     <div class="relative w-full max-w-[300px] sm:max-w-[380px] lg:max-w-[400px] aspect-[9/16] rounded-[3rem] overflow-hidden border-[8px] border-white/10 shadow-[0_0_100px_rgba(59,130,246,0.3)] transform lg:rotate-3 group-hover:rotate-0 transition-transform duration-700 bg-slate-900">
-                        <!-- 이미지 로딩 최적화를 위한 img 태그 활용 배경 -->
                         <img src="https://github.com/chacha122500-gif/cha_portfolio/blob/main/000.jpg?raw=true" 
                              alt="인스타그램 릴스" 
                              class="absolute inset-0 w-full h-full object-cover img-fade-in" 
@@ -425,12 +438,13 @@
 
         let activeHeroIndex = 0;
 
-        // 이미지 캐싱 처리 함수 추가
         function preloadImages() {
             projects.forEach(proj => {
                 const img = new Image();
                 img.src = proj.imageUrl;
             });
+            const thumb = new Image();
+            thumb.src = "https://github.com/chacha122500-gif/cha_portfolio/blob/main/KakaoTalk_20251228_175900477_02.jpg?raw=true";
         }
 
         function renderHero() {
@@ -572,7 +586,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => { 
-            preloadImages(); // 초기 캐싱 실행
+            preloadImages();
             renderHero(); renderCompetencies(); renderSkills(); lucide.createIcons(); 
             setupDragToScroll('competencies-slider'); setupDragToScroll('hero-tabs-container');
             attachCursorEvents();
